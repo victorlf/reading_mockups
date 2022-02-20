@@ -27,10 +27,12 @@ class TinderScreen extends StatelessWidget {
             Container(
               height: 50.0,
               width: 200.0,
-              decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/logo_tinder.png'),
-                      fit: BoxFit.fill)),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('assets/images/logo_tinder.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
@@ -42,28 +44,36 @@ class TinderScreen extends StatelessWidget {
                   text:
                       'By tapping Create Account or Sign In, you agree to our ',
                   style: TextStyle(
-                    fontSize: 14.0,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 12.0,
+                    fontWeight: FontWeight.w400,
                     height: 1.5,
                   ),
                   children: [
                     TextSpan(
-                      text: 'Terms. ',
-                      style: TextStyle(decoration: TextDecoration.underline),
+                      text: 'Terms',
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w500,
+                        decorationThickness: 5.0,
+                      ),
                     ),
-                    TextSpan(text: 'Learn how we process your data in our '),
+                    TextSpan(text: '. Learn how we process your data in our '),
                     TextSpan(
                       text: 'Privacy Policy ',
                       style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold),
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w500,
+                        decorationThickness: 5.0,
+                      ),
                     ),
                     TextSpan(text: 'and '),
                     TextSpan(
                       text: 'Cookies Policy',
                       style: TextStyle(
-                          decoration: TextDecoration.underline,
-                          fontWeight: FontWeight.bold),
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.w500,
+                        decorationThickness: 5.0,
+                      ),
                     ),
                     TextSpan(text: '.'),
                   ],
@@ -74,24 +84,23 @@ class TinderScreen extends StatelessWidget {
             const SizedBox(
               height: 30.0,
             ),
-            HomeScreenButton(text: 'APPLE', icon: FontAwesomeIcons.apple),
+            const HomeScreenButton(text: 'APPLE', icon: FontAwesomeIcons.apple),
             const SizedBox(
               height: 10.0,
             ),
-            HomeScreenButton(text: 'FACEBOOK', icon: Icons.facebook),
+            const HomeScreenButton(text: 'FACEBOOK', icon: Icons.facebook),
             const SizedBox(
               height: 10.0,
             ),
-            HomeScreenButton(text: 'PHONE NUMBER', icon: Icons.sms),
+            const HomeScreenButton(text: 'PHONE NUMBER', icon: Icons.sms),
             const SizedBox(
               height: 10.0,
             ),
             const Text(
-              'Trouble Signing in?',
+              'Trouble Signing In?',
               style: TextStyle(
                 fontSize: 14.0,
-                fontWeight: FontWeight.w600,
-                height: 1.5,
+                fontWeight: FontWeight.w400,
               ),
             ),
           ],
@@ -109,34 +118,45 @@ class HomeScreenButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final buttonMinWidth = screenWidth < 500.0 ? double.infinity : 500.0;
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: MaterialButton(
-        height: 50.0,
-        minWidth: double.infinity,
-        onPressed: () {},
-        shape: RoundedRectangleBorder(
-            side: const BorderSide(width: 2.0, color: Colors.white),
-            borderRadius: BorderRadius.circular(20.0)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Icon(
-              icon,
-              size: 24.0,
+      child: SizedBox(
+        width: buttonMinWidth,
+        child: MaterialButton(
+          height: 50.0,
+          minWidth: buttonMinWidth,
+          onPressed: () {},
+          shape: RoundedRectangleBorder(
+              side: const BorderSide(width: 2.0, color: Colors.white),
+              borderRadius: BorderRadius.circular(40.0)),
+          child: Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  icon,
+                  size: 20.0,
+                ),
+                Text(
+                  'SIGN IN WITH $text',
+                  style: const TextStyle(
+                    fontSize: 14.0,
+                    fontWeight: FontWeight.w400,
+                    letterSpacing: 1.0,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(
+                  width: 24,
+                ),
+              ],
             ),
-            Text(
-              'SIGN IN WITH $text',
-              style: const TextStyle(
-                fontSize: 16.0,
-                fontWeight: FontWeight.bold,
-              ),
-              textAlign: TextAlign.center,
-            ),
-            const SizedBox(
-              width: 24,
-            ),
-          ],
+          ),
         ),
       ),
     );
