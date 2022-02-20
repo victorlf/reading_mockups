@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TinderScreen extends StatelessWidget {
@@ -24,15 +25,22 @@ class TinderScreen extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
             ),
-            Container(
-              height: 50.0,
-              width: 200.0,
-              decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage('assets/images/logo_tinder.png'),
-                  fit: BoxFit.fill,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  'assets/images/tinder_logo.svg',
+                  color: Colors.white,
+                  height: 70.0,
                 ),
-              ),
+                const Text(
+                  'tinder',
+                  style: TextStyle(
+                      fontSize: 60.0,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: -4),
+                ),
+              ],
             ),
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.1,
